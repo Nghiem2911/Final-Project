@@ -1,0 +1,27 @@
+﻿@model List<Mall.model.EF.Menu>
+<div class="col-lg-7">
+    <div class="ht-right_area">
+        <div class="ht-menu">
+            @{ 
+                var session = (Mall.Common.UserLogin) Session[Mall.Common.CommonConstants.USER_SESSION];
+            }
+            @if (Session[Mall.Common.CommonConstants.USER_SESSION] == null)
+            {
+                <ul>
+                    @foreach (var item in Model)
+                    {
+                        <li><a href="@item.Link" targer="@item.Target"> @item.Text</a></li>
+                    }
+                </ul>
+            }
+            else
+            {
+        <ul>
+            <li> Xin chào : @session.UserName</li>
+            <li> @Html.ActionLink("Thoát","Logout","User")</li>
+        </ul>
+            }
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,17 @@
+﻿@model List<Mall.model.EF.Menu>
+
+<div class="col-lg-9 d-none d-lg-block position-static">
+    <div class="main-menu_area">
+        <nav>
+            <ul>
+                @foreach (var item in Model)
+                {
+                    <li class="dropdown-holder">
+                        <a href="@item.Link" target=" @item.Target" > @item.Text</a>
+                    </li>
+                    }
+                </ul>
+        </nav>
+    </div>
+</div>
+

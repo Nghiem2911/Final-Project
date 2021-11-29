@@ -1,0 +1,197 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var listNewProducts = (List<Mall.model.EF.Product>)ViewBag.NewProducts;
+    var listFeatureProducts = (List<Mall.model.EF.Product>)ViewBag.ListFeatureProducts;
+}
+
+<header>
+    <!-- header-search-area -->
+    <div class="header-search-area d-none d-md-block">
+        <div class="custom-container-two">
+            <div class="row align-items-center">
+                <div class="col-xl-3 col-lg-4 d-none d-lg-block">
+                    <div class="header-category d-none d-lg-block">
+                        <a href="#" class="cat-toggle"><i class="flaticon-menu"></i>ALL DEPARTMENT</a>
+                        <ul class="category-menu">
+                            <li class="has-dropdown">
+
+
+                                @{ Html.RenderAction("ProductCategory", "Product");}
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+
+
+                <div class="col-xl-9 col-lg-8">
+                    <div class="d-flex align-items-center justify-content-center justify-content-lg-end">
+                        <div class="header-search-wrap">
+                            <form action="/tim-kiem" method="get">
+
+                                <input type="text" id="txtKeyword" name="keyword" placeholder="Gõ từ khóa"><input type="submit" /> <i class="fa fa-search"></i>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- header-search-area-end -->
+</header>
+<!-- header-area-end -->
+<!-- main-area -->
+<main>
+    <!-- slider-area -->
+    <section class="second-slider-area" data-background="/assets/client/img/slider/2.">
+        <div class="custom-container-two">
+            <div class="row justify-content-end">
+                <div class="col-xl-10">
+                    <div class="slider-active">
+                        <div class="single-slider slider-bg" data-background="/assets/client/img/logo/slidess.jpeg">
+                            <div class="slider-content">
+                                <h5 data-animation="fadeInUp" data-delay=".3s">Top deal !</h5>
+                                <h2 data-animation="fadeInUp" data-delay=".6s">lego City</h2>
+                                <p data-animation="fadeInUp" data-delay=".9s">Get up to <span>50%</span> Only Today</p>
+                               
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- slider-area-end -->
+    <!-- top-cat-banner -->
+    <div class="top-cat-banner-area">
+        <div class="custom-container-two">
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6">
+                    <div class="top-cat-banner-item mt-30">
+                        <a href="shop-left-sidebar.html"><img src="~/assets/client/img/images/hotwheels1.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="top-cat-banner-item mt-30">
+                        <a href="shop-left-sidebar.html"><img src="~/assets/client/img/images/hotwheels2.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="top-cat-banner-item mt-30">
+                        <a href="shop-left-sidebar.html"><img src="~/assets/client/img/images/hotwheels3.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- top-cat-banner-end -->
+    <!-- super-deal-area -->
+    <section class="super-deal-area pb-40">
+        <div class="container">
+            <div class="super-deal-top">
+                <div class="row align-items-center justify-content-end">
+                    <div class="col-xl-8 col-lg-10">
+                        <div class="super-deal-title">
+                            <h3>Sản phẩm mới<span></span></h3>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-2 d-none d-lg-block">
+                        <div class="view-more text-right pr-20">
+                            <a href="#"><span>View More</span><i class="fas fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="super-deal-area pb-40">
+                <div class="container">
+                    <div class="super-deal-top">
+                        <div class="row justify-content-center">
+                            @foreach (var item in listNewProducts)
+                            {
+                                var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
+                                <div class="col-xl-3 col-md-4 col-sm-6">
+                                    <div class="super-deals-item text-center mb-55">
+                                        <div class="super-deal-thumb mb-25">
+                                            <a href="@url"><img src="@item.Image" width="300" alt="@item.Name"></a>
+                                        </div>
+                                        <div class="super-deal-content">
+                                            <h6><a href="@url">@item.Name</a></h6>
+                                            <p>@(item.Price.HasValue ? item.Price.Value.ToString("N0") : "Liên hệ")</p>
+                                            <a href="/them-gio-hang?productId=@item.ID&quantity=1" class="to-cart">Thêm vào giỏ <i class="fas fa-cart-plus"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </section>
+
+    <!-- super-deal-area-end -->
+    <!-- core-features -->
+    <section class="core-features-area">
+        <div class="container">
+            <div class="core-features-border">
+                <div class="row justify-content-center">
+                    <div class="col-xl-3 col-lg-4 col-sm-6">
+                        <div class="core-features-item mb-50">
+                            <div class="core-features-icon">
+                                <img src="/assets/client/img/icon/core_features01.png" alt="">
+                            </div>
+                            <div class="core-features-content">
+                                <h6>Free Shipping On Over $ 50</h6>
+                                <span>Agricultural mean crops livestock</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-sm-6">
+                        <div class="core-features-item mb-50">
+                            <div class="core-features-icon">
+                                <img src="/assets/client/img/icon/core_features02.png" alt="">
+                            </div>
+                            <div class="core-features-content">
+                                <h6>Membership Discount</h6>
+                                <span>Only MemberAgricultural livestock</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-sm-6">
+                        <div class="core-features-item mb-50">
+                            <div class="core-features-icon">
+                                <img src="/assets/client/img/icon/core_features03.png" alt="">
+                            </div>
+                            <div class="core-features-content">
+                                <h6>Money Return</h6>
+                                <span>30 days money back guarantee</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-sm-6">
+                        <div class="core-features-item mb-50">
+                            <div class="core-features-icon">
+                                <img src="/assets/client/img/icon/core_features04.png" alt="">
+                            </div>
+                            <div class="core-features-content">
+                                <h6>Online Support</h6>
+                                <span>30 days money back guarantee</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- core-features-end -->
+    <!-- special-offer-area -->
+</main>

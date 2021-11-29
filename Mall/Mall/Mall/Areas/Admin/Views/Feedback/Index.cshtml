@@ -1,0 +1,90 @@
+﻿@model PagedList.IPagedList<Mall.model.EF.Feedback>
+
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+@section header{
+    Danh sách phản hồi
+}
+
+<div class="row">
+    <div class="col-lg-12">
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Index", "Feedback", FormMethod.Get))
+        {
+            <div class="row form-group">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="col-md-4">
+                            <input type="text" value="@ViewBag.SearchString" class="form-control" name="searchString" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-success">Tìm kiếm</button>
+                        <a class="btn btn-primary" href="/Admin/ProductAdmin/Create">Thêm mới</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+
+                        <th>Tên</th>
+                        <th>Nội dung</th>
+                        <th>Số điện thoại</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Tên</th>
+                        <th>Nội dung</th>
+                        <th>Số điện thoại</th>
+                        <th>Email</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                    <td>@item.Name</td>
+                    <td>@item.Content</td>
+                    <td>@item.Phone</td>
+                    <td>@item.Email</td>
+                    <tr id="row_@item.ID">
+                        <td>
+                        
+                            @Ajax.ActionLink("Xóa", "Delete", new { @id = item.ID }, new AjaxOptions
+                       {
+                                Confirm = "Bạn có muốn xóa bản ghi này ?",
+                           OnComplete = "$('#row_" + @item.ID + "').remove()",
+                           HttpMethod = "Delete"
+                       })
+
+                        </td>
+
+                    </tr>
+                }
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+
+

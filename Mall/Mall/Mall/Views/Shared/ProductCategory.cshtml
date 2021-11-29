@@ -1,0 +1,12 @@
+﻿@model List<Mall.model.EF.ProductCategory>
+
+
+
+
+        @foreach (var item in Model)
+        {
+           
+            <li><a href="/san-pham/@item.MetaTitle-@item.ID"><div class="cat-menu-img"><img src="@item.Image" alt=""></div> @item.Name</a></li>
+        }
+
+   

@@ -1,0 +1,286 @@
+﻿@model Mall.model.EF.Product
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var category = (Mall.model.EF.ProductCategory)ViewBag.Category;
+    var relatedProducts = (List<Mall.model.EF.Product>)ViewBag.RelatedProducts;
+}
+
+<main>
+
+    <!-- header-search-area -->
+    <div class="header-search-area d-none d-md-block">
+        <div class="custom-container-two">
+            <div class="row align-items-center">
+                <div class="col-xl-3 col-lg-4 d-none d-lg-block">
+                    <div class="header-category d-none d-lg-block">
+                        <a href="#" class="cat-toggle"><i class="flaticon-menu"></i>ALL DEPARTMENT</a>
+                        <ul class="category-menu">
+                            <li class="has-dropdown">
+                                @{ Html.RenderAction("ProductCategory", "Product");}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- breadcrumb-area -->
+    <section class="breadcrumb-area breadcrumb-bg" data-background="assets/client/img/bg/dem.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-content text-center">
+                        <h2>Shop Single</h2>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">@category.Name</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb-area-end -->
+    <!-- shop-details-area -->
+    <section class="shop-details-area pt-100 pb-100">
+        <div class="container">
+            <div class="row mb-95">
+                <div class="col-xl-7 col-lg-6">
+                    <div class="shop-details-nav-wrap">
+                        <div class="shop-details-nav">
+                            <div class="shop-nav-item">
+                                <img src="@Model.Image" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shop-details-img-wrap">
+                        <div class="shop-details-active">
+                            <div class="shop-details-img">
+                                <a href="img/product/shop_details_img01.jpg" class="popup-image"><img src="@Model.Image" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-lg-6">
+                    <div class="shop-details-content">
+                        <span class="stock-info">In Stock</span>
+                        <h2>@Model.Name</h2>
+                        <div class="shop-details-review">
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span>- 3 Customer Reviews</span>
+                        </div>
+                        <div class="shop-details-price">
+                            <h2><span> @(Model.Price.HasValue? Model.Price.Value.ToString("N0") : "Liên hệ")</span></h2>
+                        </div>
+                        <p>@Model.Description</p>
+
+                        <div class="perched-info">
+                            <div class="cart-plus">
+                                <form action="#">
+                                    <div class="cart-plus-minus">
+                                        <input type="text" value="1">
+                                    </div>
+                                </form>
+                            </div>
+                            <a href="/them-gio-hang?productId=@Model.ID&quantity=1" class="btn add-card-btn">Thêm vào giỏ</a>
+                        </div>
+                        <div class="shop-details-bottom">
+                          
+                            <ul>
+                                <li>
+                                    <span>Tag : </span>
+                                    <a href="#">lego</a>
+                                </li>
+
+                                <li>
+                                  
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="product-desc-wrap mb-100">
+                        <ul class="nav nav-tabs mb-25" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details"
+                                   aria-selected="true">Chi tiết sản phẩm</a>
+                            </li>
+                           
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
+                                <div class="product-desc-content">
+                                    <h4 class="title">Product Details</h4>
+                                    <div class="row">
+                                        <div class="col-xl-3 col-md-4">
+                                            <div class="product-desc-img">
+                                                <img src="@Model.Image" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-9 col-md-8">
+                                            <h5 class="small-title">@Model.Name</h5>
+                                            <p>
+                                                @Model.Description
+                                            </p>
+                                            <ul class="product-desc-list">
+                                                <li>@Model.Description</li>
+                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="val" role="tabpanel" aria-labelledby="val-tab">
+                                <div class="product-desc-content">
+                                    <h4 class="title">Product Details</h4>
+                                    <div class="row">
+                                        <div class="col-xl-3 col-md-4">
+                                            <div class="product-desc-img">
+                                                <img src="img/product/desc_img.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-9 col-md-8">
+                                            <h5 class="small-title">The Christina Fashion</h5>
+                                            <p>
+                                                @Model.Description
+                                            </p>
+                                            <ul class="product-desc-list">
+                                              
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="looks" role="tabpanel" aria-labelledby="looks-tab">
+                                <div class="product-desc-content">
+                                    <h4 class="title">Product Details</h4>
+                                    <div class="row">
+                                        <div class="col-xl-3 col-md-4">
+                                            <div class="product-desc-img">
+                                                <img src="img/product/desc_img.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-9 col-md-8">
+                                            <h5 class="small-title">The Christina Fashion</h5>
+                                            <p>
+                                                @Model.Description
+                                            </p>
+                                            <ul class="product-desc-list">
+                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                                <div class="product-desc-content">
+                                    <h4 class="title">Product Details</h4>
+                                    <div class="row">
+                                        <div class="col-xl-3 col-md-4">
+                                            <div class="product-desc-img">
+                                                <img src="img/product/desc_img.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-9 col-md-8">
+                                            <h5 class="small-title">The Christina Fashion</h5>
+                                            <p>
+                                                @Model.Description
+                                            </p>
+                                            <ul class="product-desc-list">
+                                               
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="qa" role="tabpanel" aria-labelledby="qa-tab">
+                                <div class="product-desc-content">
+                                    <h4 class="title">Product Details</h4>
+                                    <div class="row">
+                                        <div class="col-xl-3 col-md-4">
+                                            <div class="product-desc-img">
+                                                <img src="img/product/desc_img.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-9 col-md-8">
+                                            <h5 class="small-title">The Christina Fashion</h5>
+                                            <p>
+                                                @Model.Description
+                                            </p>
+                                            <ul class="product-desc-list">
+                                               
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="shop-details-add mb-95">
+                        <a href="#"><img src="img/product/shop_details_add.jpg" alt=""></a>
+                    </div>
+                    <div class="related-product-wrap pb-95">
+                        <div class="deal-day-top">
+                            <div class="deal-day-title">
+                                <h4 class="title">Viewers Also Liked</h4>
+                            </div>
+                            <div class="related-slider-nav">
+                                <div class="slider-nav"></div>
+                            </div>
+                        </div>
+
+                        <div class="row related-product-active">
+                            @foreach (var item in relatedProducts)
+                            {
+
+                                var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
+                                <div class="col-xl-3">
+                                    <div class="exclusive-item exclusive-item-three text-center">
+                                        <div class="exclusive-item-thumb">
+                                            <a href="shop-details.html">
+                                                <a href="@url"><img src="@item.Image" width="300" alt="@item.Name"></a>
+                                            </a>
+                                            
+                                        </div>
+                                        <div class="exclusive-item-content">
+                                            <h6><a href="@url">@item.Name</a></h6>
+                                            <div class="exclusive--item--price">    </div>
+                                            <div class="rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <p>@(item.Price.HasValue ? item.Price.Value.ToString("N0") : "Liên hệ")</p>
+                                                <a href="/them-gio-hang?productId=@item.ID&quantity=1" class="to-cart">Thêm vào giỏ <i class="fas fa-cart-plus"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+

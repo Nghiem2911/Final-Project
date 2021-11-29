@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var list = (List<Mall.model.EF.Product>)ViewBag.NewProducts;
+}
+
+@foreach (var item in list)
+{
+    var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
+    <div class="col-xl-3 col-md-4 col-sm-6">
+        <div class="super-deals-item text-center mb-55">
+            <div class="super-deal-thumb mb-25">
+                <a href="@url"><img src="@item.Image" width="300" alt="@item.Name"></a>
+            </div>
+            <div class="super-deal-content">
+                <h6><a href="@url">@item.Name</a></h6>
+                <p>@(item.Price.HasValue ? item.Price.Value.ToString("N0") : "Liên hệ")</p>
+                <a href="/them-gio-hang?productId=@item.ID&quantity=1" class="to-cart">Thêm vào giỏ <i class="fas fa-cart-plus"></i></a>
+            </div>
+        </div>
+    </div>
+
+
+}
+
