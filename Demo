@@ -1,0 +1,33 @@
+class Program
+{
+    static void Main(string[] args)
+    {
+        Pizza();
+        Hambuger();
+        Console.ReadKey();
+    }
+
+    public static async Task Pizza()
+    {
+        await Task.Run(() =>
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                Console.WriteLine(" Pizza");
+                // Do something
+                Task.Delay(100).Wait();
+            }
+        });
+    }
+
+
+    public static void Hambuger()
+    {
+        for (int i = 0; i < 25; i++)
+        {
+            Console.WriteLine(" Hambuger");
+            // Do something
+           Task.Delay(100).Wait();
+        }
+    }
+}
